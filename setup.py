@@ -3,7 +3,7 @@ from setuptools import find_packages, setup
 
 NAME = "msvc"
 DESCRIPTION = "multilingual speech valence classifier."
-URL = "TBD"
+URL = "https://github.com/michen00/MSVC"
 EMAIL = "michael.chen.0@gmail.com"
 AUTHOR = "Michael I Chen"
 VERSION = "0.1.0"
