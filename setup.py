@@ -8,6 +8,9 @@ EMAIL = "michael.chen.0@gmail.com"
 AUTHOR = "Michael I Chen"
 VERSION = "0.1.0"
 REQUIRED = [
+    "dal",
+    "daal4py",
+    "dal",
     "ffmpeg",
     "joblib",
     "matplotlib",
