@@ -15,7 +15,6 @@ REQUIRED = [
     "pandas",
     "pydub",
     "pysoundfile",
-    "python",
     "scikit-learn-intelex",
     "scikit-learn",
     "seaborn",
