@@ -10,6 +10,6 @@ before_install:
 install:
   - pip install -e .
 script:
-  pytest --cov=msvc/src msvc/tests
+  python -m pytest --cov=msvc/src msvc/tests --mpl
 after_success:
   - codecov
