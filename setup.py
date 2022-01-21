@@ -8,6 +8,7 @@ EMAIL = "michael.chen.0@gmail.com"
 AUTHOR = "Michael I Chen"
 VERSION = "0.1.0"
 REQUIRED = [
+    "av==8.1.0",
     "daal==2021.4.0",
     "daal4py==2021.4.0",
     "ffmpeg>=1.4",
