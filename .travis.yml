@@ -35,6 +35,7 @@ matrix:
         - conda activate msvc_env
         - conda install python=3.8.12 -c conda-forge -y
         - conda install -c pytorch-nightly -c conda-forge torchaudio=0.11.0.* -y
+        - export PATH=$PATH:$(pwd)
       install: *ref_0
       script: *ref_1
       after_success:
