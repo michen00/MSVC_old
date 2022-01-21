@@ -1,19 +1,26 @@
-os: windows
-language: sh
-python:
-  - "3.8.12"
-before_install:
-  - choco install python3
-  - export PATH="/c/Python38:/c/Python38/Scripts:$PATH"
-  - choco install pip3
-  - python -m pip install --upgrade pip wheel
-install:
-  - pip install -e .
-  - pip install -U pytest
-  - pip install -U codecov
-  - pip install -U pytest-cov
-  - pip install -U pytest-mpl
-script:
-  python -m pytest --cov=msvc/src msvc/tests --mpl
-after_success:
-  - codecov
+fleet_script_tasks:
+  script: &ref_1
+    - python --version
+    - python -m pytest --cov=msvc/src msvc/tests --mpl
+fleet_install_tasks:
+  install: &ref_0
+    - pip install -e .
+matrix:
+  fast_finish: true
+  include:
+    - name: Python 3.8.12 on Windows
+      os: windows
+      language: shell
+      env:
+        - 'PATH=/c/Python38:/c/Python38/Scripts:$PATH'
+      before_install:
+        - choco install python --version 3.8.12
+        - pip install virtualenv
+        - virtualenv $HOME/venv
+        - source $HOME/venv/Scripts/activate
+        - python -m pip install --upgrade pip wheel
+      install: *ref_0
+      script: *ref_1
+      after_success:
+        - codecov
+        - deactivate
