@@ -13,8 +13,10 @@ matrix:
       language: shell
       env:
         - 'PATH=/c/Python38:/c/Python38/Scripts:$PATH'
+      python:
+        - "3.8.12"
       before_install:
-        - choco install python --version 3.8.12
+        - choco install python3
         - pip install virtualenv
         - virtualenv $HOME/venv
         - source $HOME/venv/Scripts/activate
