@@ -8,7 +8,7 @@ fleet_install_tasks:
 matrix:
   fast_finish: true
   include:
-    - name: Python 3.8.12 on Windows
+    - name: Python 3.8 on Windows
       os: windows
       language: shell
       env:
@@ -16,7 +16,7 @@ matrix:
       python:
         - "3.8.12"
       before_install:
-        - choco install python3
+        - choco install python --version=3.8
         - python -m pip install --upgrade pip wheel
         - pip install virtualenv
         - virtualenv $HOME/venv
