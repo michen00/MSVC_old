@@ -16,11 +16,15 @@ matrix:
       python:
         - "3.8.12"
       before_install:
-        - choco install python --version=3.8
+        - choco install python3 --version=3.8.10
         - python -m pip install --upgrade pip wheel
         - pip install virtualenv
         - virtualenv $HOME/venv
         - source $HOME/venv/Scripts/activate
+        - pip install -U pytest
+        - pip install -U codecov
+        - pip install -U pytest-cov
+        - pip install -U pytest-mpl
       install: *ref_0
       script: *ref_1
       after_success:
