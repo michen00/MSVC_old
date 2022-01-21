@@ -27,6 +27,9 @@ FIRST_LOAD: Dict[str, Any] = {
     "audio_buffer": AudioSegment.empty(),
 }
 
+# provide ffmpeg.exe location
+AudioSegment.converter = "ffmpeg.exe"
+
 
 def init_session(session_state: LazySessionState) -> None:
     """session_state initialization parameters"""

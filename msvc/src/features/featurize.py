@@ -27,7 +27,7 @@ def load_extractor(extractor: str) -> BaseEstimator:
     """loads a custom feature extractor"""
     from joblib import load as joblib_load
 
-    return joblib_load(f"src/features/feature_extractors/{extractor}.joblib")
+    return joblib_load(f"msvc/src/features/feature_extractors/{extractor}.joblib")
 
 
 def featurize(frill_df: pd.DataFrame) -> pd.DataFrame:
@@ -50,7 +50,7 @@ def featurize(frill_df: pd.DataFrame) -> pd.DataFrame:
     spinner = st.spinner
 
     # select FRILL columns
-    with open("src/features/FRILL/selected_frill_columns.txt", "r") as f:
+    with open("msvc/src/features/FRILL/selected_frill_columns.txt", "r") as f:
         frill_df = frill_df.loc[:, [_.strip() for _ in f.readlines()]]
 
     # LDA components of FRILL embeddings
@@ -240,7 +240,7 @@ def featurize(frill_df: pd.DataFrame) -> pd.DataFrame:
 
     # verify columns and ensure column order
     with spinner("verifying column order..."):
-        with open("src/features/column_order.txt", "r") as f:
+        with open("msvc/src/features/column_order.txt", "r") as f:
             columns = [line.strip() for line in f.readlines()]
         assert set(data.columns) == set(columns)
         assert len(data.columns) == len(columns)

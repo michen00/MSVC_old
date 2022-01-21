@@ -12,4 +12,4 @@ from sklearn.base import BaseEstimator
 def load_classifier() -> BaseEstimator:
     """returns the pipeline classifier"""
 
-    return load("src/models/stacked_pass.joblib")
+    return load("msvc/src/models/stacked_pass.joblib")

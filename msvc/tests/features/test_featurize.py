@@ -45,9 +45,11 @@ class TestFeaturize(object):
         """test featurization of FRILL embeddings"""
         import pandas as pd
 
-        mock_frill_in: pd.DataFrame = pd.read_feather("tests/features/test_df.feather")
+        mock_frill_in: pd.DataFrame = pd.read_feather(
+            "msvc/tests/features/test_df.feather"
+        )
         mock_features_out: pd.DataFrame = pd.read_feather(
-            "tests/features/test_features.feather"
+            "msvc/tests/features/test_features.feather"
         )
         test_output = featurize(mock_frill_in)
         assert all(test_output == mock_features_out)

@@ -4,7 +4,7 @@ import numpy as np
 import pytest
 
 
-@pytest.mark.mpl_image_compare
+@pytest.mark.mpl_image_compare(tolerance=5)
 class TestVisualize(object):
     def test_visualization(self) -> None:
         """compare output visualization with expected"""

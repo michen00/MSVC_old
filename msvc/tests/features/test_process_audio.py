@@ -8,19 +8,21 @@ class TestProcessAudio(object):
         """checks the returned dataframe"""
         from pandas import DataFrame, read_feather
         from pydub import AudioSegment
+        from tensorflow_hub import load
         import tensorflow.compat.v2 as tf
-        import tensorflow_hub as hub
 
         tf.enable_v2_behavior()
+        AudioSegment.converter = "ffmpeg.exe"
 
         class mock_session:
-            audio_buffer = AudioSegment.from_wav("tests/features/test.wav")
+            audio_buffer = AudioSegment.from_wav("msvc\\tests\\features\\test.wav")
 
         test_audio = process_audio(
             mock_session,
-            hub.load("https://tfhub.dev/google/nonsemantic-speech-benchmark/frill/1"),
+            # load("https://tfhub.dev/google/nonsemantic-speech-benchmark/frill/1"),
+            load("msvc\\src\\features\\FRILL"),
         )
         assert type(test_audio) == DataFrame
         assert len(test_audio.columns) == 2048
         assert not test_audio.isnull().values.any()
-        assert all(test_audio == read_feather("tests/features/test_df.feather"))
+        assert all(test_audio == read_feather("msvc\\tests\\features\\test_df.feather"))
