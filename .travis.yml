@@ -36,7 +36,7 @@ matrix:
         - conda install python=3.8.12 -c conda-forge -y
         - conda install -c pytorch-nightly -c conda-forge torchaudio=0.11.0.* -y
         - export PATH=$PATH:$(pwd)
-        - choco install ffmpeg --version=4.2.3 --params="'/JustMe /AddToPath:1'";
+        - set PATH=%PATH%;C:\ffmpeg\bin\
       install: *ref_0
       script: *ref_1
       after_success:
