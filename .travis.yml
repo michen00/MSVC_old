@@ -31,7 +31,7 @@ matrix:
         - source $MINICONDA_PATH/etc/profile.d/conda.sh;
         - hash -r;
         - conda update conda -c conda-forge -y
-        - conda env create -f environment.yml -c conda-forge -y
+        - conda env create -f environment.yml
         - conda install python=3.8.12 -c conda-forge -y
         - conda install -c pytorch-nightly torchaudio=0.11.0.dev20220117 -y
       install: *ref_0
