@@ -1,16 +1,17 @@
 os: windows
-language: python
+language: sh
 python:
   - "3.8.12"
 before_install:
-  - python --version
-  - pip install -U pip
+  - choco install python3
+  - export PATH="/c/Python38:/c/Python38/Scripts:$PATH"
+  - python -m pip install --upgrade pip wheel
+install:
+  - pip install -e .
   - pip install -U pytest
   - pip install -U codecov
   - pip install -U pytest-cov
   - pip install -U pytest-mpl
-install:
-  - pip install -e .
 script:
   python -m pytest --cov=msvc/src msvc/tests --mpl
 after_success:
