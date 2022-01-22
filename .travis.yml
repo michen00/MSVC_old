@@ -6,12 +6,8 @@ matrix:
       python:
         - "3.8.12"
       before_install:
-        - conda activate base
-        - conda update conda -c conda-forge -y
-        - conda remove --name msvc_env --all -y
-        - conda env create -f environment.yml
-        - conda activate msvc_env
-        - conda install codecov pytest pytest-cov pytest-mpl -c conda-forge -y
+        - pip install -r requirements.txt
+        - pip install -U codecov pytest pytest-cov pytest-mpl
       install: pip install -e .
       script:
         - python --version
