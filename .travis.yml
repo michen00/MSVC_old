@@ -6,9 +6,15 @@ matrix:
       python:
         - "3.8.12"
       before_install:
-        - pip install -r requirements.txt
-        - pip install -U codecov pytest pytest-cov pytest-mpl
-      install: pip install -e .
+        - wget https://repo.anaconda.com/miniconda/Miniconda3-py38_4.10.3-Linux-x86_64.sh -O ~/miniconda.sh
+        - bash ~/miniconda.sh -b -p $HOME/miniconda
+        - conda activate base
+        - conda update conda -c conda-forge -y
+        - conda env create -f environment.yml
+        - conda activate msvc_env
+      install:
+        - pip install -e .
+        - conda install codecov pytest pytest-cov pytest-mpl -c conda-forge -y
       script:
         - python --version
         - python -m pytest --cov=msvc/src msvc/tests --mpl
