@@ -9,6 +9,7 @@ matrix:
       python:
         - "3.8.12"
       before_install:
+        - echo $PATH
         - choco install python3 --version=3.8.10
         - python -m pip install --upgrade pip wheel
         - export MINICONDA_PATH=$HOME/miniconda;
@@ -16,10 +17,14 @@ matrix:
         - export MINICONDA_SUB_PATH=$MINICONDA_PATH/Scripts;
         - export MINICONDA_LIB_BIN_PATH=$MINICONDA_PATH/Library/bin;
         - choco install openssl.light;
+        - echo $PATH
         - choco install miniconda3 --params="'/JustMe /AddToPath:1 /D:$MINICONDA_PATH_WIN'";
-        - choco install ffmpeg --version=4.2.2 --params="'/JustMe /AddToPath:1'"
+        - echo $PATH
+        - choco install ffmpeg --version=4.2.3 --params="'/JustMe /AddToPath:1'"
+        - echo $PATH
         # - export PATH="$(pwd):$MINICONDA_PATH:$MINICONDA_SUB_PATH:$MINICONDA_LIB_BIN_PATH:$PATH";
         - export PATH="$MINICONDA_PATH:$MINICONDA_SUB_PATH:$MINICONDA_LIB_BIN_PATH:$PATH";
+        - echo $PATH
         - source $MINICONDA_PATH/etc/profile.d/conda.sh;
         - hash -r;
         - conda activate base
