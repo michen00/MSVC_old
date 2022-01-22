@@ -15,8 +15,6 @@ matrix:
         - "3.8.12"
       before_install:
         - choco install python3 --version=3.8.10
-        - choco install pip
-        - python -m pip install --upgrade pip wheel
         - export MINICONDA_PATH=$HOME/miniconda;
         - export MINICONDA_PATH_WIN=`cygpath --windows $MINICONDA_PATH`;
         - export MINICONDA_SUB_PATH=$MINICONDA_PATH/Scripts;
