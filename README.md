@@ -1,4 +1,13 @@
-After downloading and installing dependencies, the following terminal commands may be used to run the app locally:
+To setup the environment:
+
+    conda activate base
+    conda update conda -c conda-forge -y
+    conda remove --name msvc_env --all -c conda-forge -y
+    conda env create -f environment.yml
+    conda activate msvc_env
+    pip install -e .
+
+To run the app locally:
 
     streamlit run msvc/src/app.py
 

@@ -4,14 +4,11 @@ fleet_script_tasks:
     - python -m pytest --cov=msvc/src msvc/tests --mpl
 fleet_install_tasks:
   install: &ref_0
-    - pip install -U pytest
-    - pip install -U codecov
-    - pip install -U pytest-cov
-    - pip install -U pytest-mpl
+    - pip install -e .
 matrix:
   fast_finish: true
   include:
-    - name: Python 3.8 on Windows
+    - name: MSVC
       os: windows
       language: shell
       env:
@@ -27,15 +24,15 @@ matrix:
         - export MINICONDA_LIB_BIN_PATH=$MINICONDA_PATH/Library/bin;
         - choco install openssl.light;
         - choco install miniconda3 --params="'/JustMe /AddToPath:1 /D:$MINICONDA_PATH_WIN'";
-        - export FFMPEG_PATH=$HOME/ffmpeg/bin;
-        - export PATH="$MINICONDA_PATH:$MINICONDA_SUB_PATH:$MINICONDA_LIB_BIN_PATH:$FFMPEG_PATH:$PATH:$(pwd)";
+        - export PATH="$(pwd):$MINICONDA_PATH:$MINICONDA_SUB_PATH:$MINICONDA_LIB_BIN_PATH:$PATH";
         - source $MINICONDA_PATH/etc/profile.d/conda.sh;
         - hash -r;
+        - conda activate base
         - conda update conda -c conda-forge -y
+        - conda remove --name msvc_env --all -y
         - conda env create -f environment.yml
         - conda activate msvc_env
-        - conda install python=3.8.12 -c conda-forge -y
-        - conda install -c pytorch-nightly -c conda-forge torchaudio=0.11.0.* -y
+        - conda install codecov pytest pytest-cov pytest-mpl -c conda-forge -y
       install: *ref_0
       script: *ref_1
       after_success:

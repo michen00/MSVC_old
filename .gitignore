@@ -1,6 +1,4 @@
 requirements.txt
-msvc.egg-info
-msvc.egg-info/*
 .pytest_cache/
 .pytest_cache/*
 __pycache__/
