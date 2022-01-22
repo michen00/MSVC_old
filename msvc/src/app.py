@@ -10,6 +10,7 @@ import streamlit as st
 from streamlit_webrtc import webrtc_streamer, WebRtcMode
 
 # utility
+# from pydub.utils import which
 import queue
 
 # audio preprocessing & featurization
@@ -26,10 +27,6 @@ FIRST_LOAD: Dict[str, Any] = {
     "prediction": None,
     "audio_buffer": AudioSegment.empty(),
 }
-
-# provide ffmpeg.exe location
-AudioSegment.converter = "ffmpeg.exe"
-
 
 def init_session(session_state: LazySessionState) -> None:
     """session_state initialization parameters"""
@@ -98,6 +95,8 @@ def main() -> None:
         sample = session_state.audio_buffer
         audio_available = sample != AudioSegment.empty()
         if audio_available:
+            # provide ffmpeg.exe location
+            # AudioSegment.converter = which("/usr/bin/ffmpeg.exe")
             st.audio(
                 sample.export(format="wav", codec="pcm_s16le", bitrate="128k").read()
             )

@@ -5,7 +5,7 @@ To setup the environment:
     conda remove --name msvc_env --all -c conda-forge -y
     conda env create -f environment.yml
     conda activate msvc_env
-    pip install -e .
+    python -m pip install -e .
 
 To run the app locally:
 
