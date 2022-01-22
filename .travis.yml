@@ -1,37 +1,21 @@
-fleet_script_tasks:
-  script: &ref_1
-    - python --version
-    - python -m pytest --cov=msvc/src msvc/tests --mpl
-fleet_install_tasks:
-  install: &ref_0
-    - pip install -e .
 matrix:
   fast_finish: true
   include:
     - name: MSVC
-      os: windows
-      language: shell
+      language: python
       python:
         - "3.8.12"
       before_install:
-        - choco install python3 --version=3.8.10
-        - export MINICONDA_PATH=$HOME/miniconda;
-        - export MINICONDA_PATH_WIN=`cygpath --windows $MINICONDA_PATH`;
-        - export MINICONDA_SUB_PATH=$MINICONDA_PATH/Scripts;
-        - export MINICONDA_LIB_BIN_PATH=$MINICONDA_PATH/Library/bin;
-        - choco install openssl.light;
-        - choco install miniconda3 --params="'/JustMe /AddToPath:1 /D:$MINICONDA_PATH_WIN'";
-        - export PATH="$(pwd):$MINICONDA_PATH:$MINICONDA_SUB_PATH:$MINICONDA_LIB_BIN_PATH:$PATH";
-        - source $MINICONDA_PATH/etc/profile.d/conda.sh;
-        - hash -r;
         - conda activate base
         - conda update conda -c conda-forge -y
         - conda remove --name msvc_env --all -y
         - conda env create -f environment.yml
         - conda activate msvc_env
         - conda install codecov pytest pytest-cov pytest-mpl -c conda-forge -y
-      install: *ref_0
-      script: *ref_1
+      install: pip install -e .
+      script:
+        - python --version
+        - python -m pytest --cov=msvc/src msvc/tests --mpl
       after_success:
         - codecov
         - deactivate
